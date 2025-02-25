@@ -6,24 +6,32 @@ import '../lib/fetchers';
 import { withClientFetching } from '../lib/hoc/withClientFetching';
 import UserTable from '../components/UserTable';
 import ProductTable from '../components/ProductTable';
+import OrderTable from '../components/OrderTable';
+import { PageContainer, PageTitle, SectionContainer, SectionTitle } from '../components/SharedStyles';
 
 const ClientUserTable = withClientFetching('users')(UserTable);
 const ClientProductTable = withClientFetching('products')(ProductTable);
+const ClientOrderTable = withClientFetching('orders')(OrderTable);
 
 export default function ClientExamplePage() {
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-8">Client-Side Fetching Example</h1>
+    <PageContainer>
+      <PageTitle>Client-Side Fetching Example</PageTitle>
       
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Users</h2>
+      <SectionContainer>
+        <SectionTitle>Users</SectionTitle>
         <ClientUserTable />
-      </div>
+      </SectionContainer>
 
-      <div>
-        <h2 className="text-2xl font-semibold mb-4">Products</h2>
+      <SectionContainer>
+        <SectionTitle>Products</SectionTitle>
         <ClientProductTable />
-      </div>
-    </div>
+      </SectionContainer>
+
+      <SectionContainer>
+        <SectionTitle>Orders</SectionTitle>
+        <ClientOrderTable />
+      </SectionContainer>
+    </PageContainer>
   );
 } 

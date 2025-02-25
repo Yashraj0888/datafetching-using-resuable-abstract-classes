@@ -3,13 +3,12 @@
 import {
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper
 } from '@mui/material';
 import { Product } from '../lib/fetchers/ProductFetcher';
+import { StyledPaper, StyledTableCell, StyledTableRow } from './SharedStyles';
 
 interface ProductTableProps {
   data: { products: Product[] };
@@ -17,26 +16,30 @@ interface ProductTableProps {
 
 function ProductTable({ data }: ProductTableProps) {
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Price</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.products.map((product) => (
-            <TableRow key={product.id}>
-              <TableCell>{product.id}</TableCell>
-              <TableCell>{product.name}</TableCell>
-              <TableCell>${product.price.toFixed(2)}</TableCell>
+    <StyledPaper elevation={0}>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>ID</StyledTableCell>
+              <StyledTableCell>Name</StyledTableCell>
+              <StyledTableCell>Price</StyledTableCell>
+              <StyledTableCell>Stock</StyledTableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {data.products.map((product) => (
+              <StyledTableRow key={product.id}>
+                <StyledTableCell>{product.id}</StyledTableCell>
+                <StyledTableCell>{product.name}</StyledTableCell>
+                <StyledTableCell>${product.price.toFixed(2)}</StyledTableCell>
+                <StyledTableCell>{product.stock}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </StyledPaper>
   );
 }
 

@@ -4,24 +4,33 @@ import '../lib/fetchers';
 import { withServerFetching } from '../lib/hoc/withServerFetching';
 import UserTable from '../components/UserTable';
 import ProductTable from '../components/ProductTable';
+import OrderTable from '../components/OrderTable';
+import { PageContainer, PageTitle, SectionContainer, SectionTitle } from '../components/SharedStyles';
 
 const ServerUserTable = withServerFetching('users')(UserTable);
 const ServerProductTable = withServerFetching('products')(ProductTable);
+const ServerOrderTable = withServerFetching('orders')(OrderTable);
 
 export default async function ServerExamplePage() {
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-8">Server-Side Fetching Example</h1>
+    <PageContainer>
+      <PageTitle>Server-Side Fetching Example</PageTitle>
       
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Users</h2>
+      <SectionContainer>
+        <SectionTitle>Users</SectionTitle>
         <ServerUserTable />
-      </div>
+      </SectionContainer>
 
-      <div>
-        <h2 className="text-2xl font-semibold mb-4">Products</h2>
+      <SectionContainer>
+        <SectionTitle>Products</SectionTitle>
         <ServerProductTable />
-      </div>
-    </div>
+      </SectionContainer>
+
+      <SectionContainer>
+        <SectionTitle>Orders</SectionTitle>
+        <ServerOrderTable />
+      </SectionContainer>
+    </PageContainer>
   );
 } 
+

@@ -13,6 +13,12 @@ export function withClientFetching(type: string) {
       const [loading, setLoading] = useState(true);
 
       useEffect(() => {
+        /**
+         * Fetches the data for the given type using the registered fetcher.
+         * If the fetcher is not found, it throws an error.
+         * If the fetch fails, it sets the error state.
+         * Finally, it sets the loading state to false.
+         */
         const fetchData = async () => {
           try {
             const fetcher = FetcherRegistry.getInstance().getFetcher(type);

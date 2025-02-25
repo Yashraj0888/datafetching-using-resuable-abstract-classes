@@ -1,3 +1,17 @@
+/**
+ * Handles GET requests to the data API route.
+ *
+ * This function reads a JSON file from the public/data directory based on the 'type' query parameter
+ * and returns its contents as a JSON response. If the 'type' parameter is missing or the file does not exist,
+ * appropriate error responses are returned.
+ *
+ * @param {NextRequest} request - The incoming request object.
+ * @returns {Promise<NextResponse>} - A promise that resolves to a NextResponse object containing the JSON data or an error message.
+ *
+ * @throws {Error} - Throws an error if there is an issue reading the file or parsing its contents.
+ */
+
+
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';

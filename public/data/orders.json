@@ -1,0 +1,28 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "customerName": "John Doe",
+      "productName": "Laptop",
+      "quantity": 2,
+      "totalAmount": 1999.98,
+      "orderDate": "2024-02-15"
+    },
+    {
+      "id": 2,
+      "customerName": "Jane Smith",
+      "productName": "Smartphone",
+      "quantity": 1,
+      "totalAmount": 599.99,
+      "orderDate": "2024-02-16"
+    },
+    {
+      "id": 3,
+      "customerName": "Mike Johnson",
+      "productName": "Headphones",
+      "quantity": 3,
+      "totalAmount": 449.97,
+      "orderDate": "2024-02-17"
+    }
+  ]
+} 
