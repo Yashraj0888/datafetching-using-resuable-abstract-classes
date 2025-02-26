@@ -21,8 +21,8 @@ A modern Next.js 14 application demonstrating advanced data fetching patterns us
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd my-app
+git clone https://github.com/yashraj-0888/datafetching-using-resuable-abstract-classes.git
+cd datafetching-using-resuable-abstract-classes
 ```
 
 2. Install dependencies:

@@ -19,6 +19,7 @@ import path from 'path';
 export async function GET(request: NextRequest) {
   try {
     const type = request.nextUrl.searchParams.get('type');
+    const fileType = request.nextUrl.searchParams.get('fileType') || 'json'; // Default to json if not specified
     
     if (!type) {
       return NextResponse.json(
@@ -27,16 +28,27 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const filePath = path.join(process.cwd(), 'public', 'data', `${type}.json`);
+    const filePath = path.join(process.cwd(), 'public', 'data', `${type}.${fileType}`);
     
     try {
       const fileContent = await fs.readFile(filePath, 'utf-8');
-      const data = JSON.parse(fileContent);
-      return NextResponse.json(data);
+      
+      // Handle different file types
+      if (fileType === 'json') {
+        const data = JSON.parse(fileContent);
+        return NextResponse.json(data);
+      } else {
+        // For non-JSON files, return the raw content with appropriate content type
+        return new NextResponse(fileContent, {
+          headers: {
+            'Content-Type': getContentType(fileType),
+          },
+        });
+      }
     } catch (error) {
       if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
         return NextResponse.json(
-          { error: `No data found for type: ${type}` },
+          { error: `No data found for type: ${type} with file type: ${fileType}` },
           { status: 404 }
         );
       }
@@ -49,4 +61,19 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+function getContentType(fileType: string): string {
+  const contentTypes: Record<string, string> = {
+    'json': 'application/json',
+    'txt': 'text/plain',
+    'csv': 'text/csv',
+    'xml': 'application/xml',
+    'yaml': 'application/x-yaml',
+    'yml': 'application/x-yaml',
+    'md': 'text/markdown',
+    'html': 'text/html',
+  };
+
+  return contentTypes[fileType.toLowerCase()] || 'application/octet-stream';
 } 

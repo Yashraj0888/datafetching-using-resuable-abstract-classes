@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { styled } from '@mui/material/styles';
+import { withClientFetching } from '../lib/hoc/withClientFetching';
+import BalajiTable from './BalajiFecther';
 
 const HomeContainer = styled('div')({
   minHeight: '100vh',
@@ -73,6 +75,24 @@ const CardDescription = styled('p')({
   lineHeight: 1.5,
 });
 
+const SectionContainer = styled('div')({
+  marginTop: '3rem',
+  padding: '2rem',
+  backgroundColor: '#ffffff',
+  borderRadius: '1rem',
+  boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+});
+
+const SectionTitle = styled('h2')({
+  fontSize: '2rem',
+  fontWeight: 700,
+  color: '#1e293b',
+  marginBottom: '1rem',
+});
+
+// Create a client-side fetching version of BalajiTable
+const ClientBalajiTable = withClientFetching('balaji')(BalajiTable);
+
 export default function HomeContent() {
   return (
     <HomeContainer>
@@ -100,7 +120,19 @@ export default function HomeContent() {
               perfect for interactive and real-time applications.
             </CardDescription>
           </Card>
+
+          <Card href="/balaji-example">
+            <CardTitle>Balaji Data Example</CardTitle>
+            <CardDescription>
+              View and manage Balaji data with both server-side and client-side fetching capabilities.
+            </CardDescription>
+          </Card>
         </Grid>
+
+        <SectionContainer>
+          <SectionTitle>Balaji Data Preview</SectionTitle>
+          <ClientBalajiTable />
+        </SectionContainer>
       </ContentContainer>
     </HomeContainer>
   );

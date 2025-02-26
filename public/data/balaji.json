@@ -1,0 +1,20 @@
+{
+    "balaji": [
+        {
+            "name": "Balaji Kumar",
+            "age": 28,
+            "city": "Chennai",
+            "country": "India",
+            "email": "balaji@example.com",
+            "phone": "+91-9876543210"
+        },
+        {
+            "name": "Balaji Raman",
+            "age": 32,
+            "city": "Bangalore",
+            "country": "India",
+            "email": "balajir@example.com",
+            "phone": "+91-9876543211"
+        }
+    ]
+}

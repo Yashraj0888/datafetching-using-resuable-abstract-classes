@@ -7,11 +7,11 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { Order } from '../lib/fetchers/OrderFetcher';
+import * as fetchers from '../lib/fetchers/index';
 import { StyledPaper, StyledTableCell, StyledTableRow } from './SharedStyles';
 
 interface OrderTableProps {
-  data: { orders: Order[] };
+  data: { orders: fetchers.Order[] };
 }
 
 function OrderTable({ data }: OrderTableProps) {
